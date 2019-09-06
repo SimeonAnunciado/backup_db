@@ -2,7 +2,14 @@
 
 	date_default_timezone_set('Asia/Manila');
 
-	$conn = new mysqli($host = 'localhost', $user = 'root', $pass = '', $dbname = 'shareposts');
+	$host = '';
+	$user = '';
+	$pass = '';
+	$dbname = '';
+
+
+
+	$conn = new mysqli($host = 'localhost', $user = 'root', $pass = '', $dbname = 'test');
 		if ($conn->connect_error) {
 		    die("Connection failed: " . $conn->connect_error);
 		}
@@ -54,15 +61,20 @@
 
 
 	    $date = date('Y-m-d_H_i_s');
-	    $backup_file_name = $date.'_'.$dbname.'_backup.sql';
+	    $backup_file_name = 'database_backup/'.$date.'_'.$dbname.'_backup.sql';
 	    $fileHandler = fopen($backup_file_name, 'w+');
-	    fwrite($fileHandler, $outsql);
-	    fclose($fileHandler);
+	    $fwrite = fwrite($fileHandler, $outsql);
+	    $fclose = fclose($fileHandler);
+
+	    if ($fileHandler AND $fwrite AND $fclose ) {
+   			echo 'SUCCESS DATABASE BACK UP!';
+	    }else{
+	    	echo "ERROR {$dbname} DATABASE BACK UP !";
+	    }
 
 
 	    // readfile($backup_file_name);
 	    // exec('rm ' . $backup_file_name);
-   		echo 'Success Backup !';
 
 
    		function current_db(){
