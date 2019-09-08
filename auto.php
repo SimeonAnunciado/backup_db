@@ -2,14 +2,14 @@
 
 	date_default_timezone_set('Asia/Manila');
 
-	$host = '';
-	$user = '';
+	$host = 'localhost';
+	$user = 'root';
 	$pass = '';
-	$dbname = '';
+	$dbname = 'test';
 
 
 
-	$conn = new mysqli($host = 'localhost', $user = 'root', $pass = '', $dbname = 'test');
+	$conn = new mysqli($host, $user , $pass , $dbname);
 		if ($conn->connect_error) {
 		    die("Connection failed: " . $conn->connect_error);
 		}
